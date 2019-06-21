@@ -49,6 +49,37 @@ class TodofieViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     
     }
+    
+    
+    @IBAction func addToDoItem(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title:"Add To List Item", message:"", preferredStyle:.alert)
+        
+        let alertAction = UIAlertAction(title:"Add Item", style:.default) { (action) in
+    
+            if let textValue = textField.text{
+                
+                if(textValue.count != 0)
+                {
+                    self.toDoListItem.append(textValue)
+                    self.tableView.reloadData()
+                }
+
+            }
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Enter the To Do Item here"
+            textField = alertTextField
+        }
+        
+        alert.addAction(alertAction)
+        
+        present(alert, animated: true)
+    }
+    
 
 }
 
