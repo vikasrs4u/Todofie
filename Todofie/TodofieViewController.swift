@@ -18,15 +18,7 @@ class TodofieViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let newItem = ToDoDataModel()
-        
-        newItem.title = "Vikas"
-        
-        newItem.done = true
-        
-        itemArray.append(newItem)
-
-       
+            loadItems()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -122,6 +114,24 @@ class TodofieViewController: UITableViewController {
         }
         
         self.tableView.reloadData()
+    }
+    
+    
+    func loadItems(){
+        
+        if let data = try? Data(contentsOf: dataFilePath!){
+            let decoder = PropertyListDecoder()
+            
+            do{
+                itemArray = try decoder.decode([ToDoDataModel].self, from: data)
+                
+            }
+            catch{
+                print("Error while decoding \(error)")
+            }
+        }
+
+        
     }
     
 

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ToDoDataModel: Encodable{
+class ToDoDataModel: Encodable, Decodable{
  
     var title:String = ""
     
