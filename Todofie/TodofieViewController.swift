@@ -10,11 +10,23 @@ import UIKit
 
 class TodofieViewController: UITableViewController {
     
-    var toDoListItem = ["Vikas", "Egg", "Sambar"]
+    
+    var itemArray = [ToDoDataModel]()
+    
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Item.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let newItem = ToDoDataModel()
+        
+        newItem.title = "Vikas"
+        
+        newItem.done = true
+        
+        itemArray.append(newItem)
+
+       
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -23,28 +35,36 @@ class TodofieViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDoListItem.count
+        return itemArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "toDoCell", for: indexPath)
         
-        cell.textLabel?.text = toDoListItem[indexPath.row]
+        cell.textLabel?.text = itemArray[indexPath.row].title
         
+        cell.accessoryType = itemArray[indexPath.row].done ? .checkmark : .none
+  
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let accessoryType = tableView.cellForRow(at: indexPath)?.accessoryType
+        let accessoryType = itemArray[indexPath.row].done
+            
         
-        if (accessoryType == UITableViewCell.AccessoryType.none){
+        if (accessoryType == false){
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            itemArray[indexPath.row].done = true
+            
         }
         else{
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            itemArray[indexPath.row].done = false
         }
+        
+        saveItem()
         
         tableView.deselectRow(at: indexPath, animated: true)
     
@@ -61,10 +81,15 @@ class TodofieViewController: UITableViewController {
     
             if let textValue = textField.text{
                 
-                if(textValue.count != 0)
-                {
-                    self.toDoListItem.append(textValue)
-                    self.tableView.reloadData()
+                if(textValue.count != 0){
+                    
+                    let newItem1 = ToDoDataModel()
+                    
+                    newItem1.title = textValue
+                    
+                    self.itemArray.append(newItem1)
+                    
+                    self.saveItem()
                 }
 
             }
@@ -78,6 +103,25 @@ class TodofieViewController: UITableViewController {
         alert.addAction(alertAction)
         
         present(alert, animated: true)
+    }
+    
+    
+    func saveItem(){
+        
+        let encoder = PropertyListEncoder()
+        
+        do{
+            let data = try encoder.encode(self.itemArray)
+            
+            try data.write(to: self.dataFilePath!)
+        }
+        catch{
+            
+            print("Error caused during encoding \(error)")
+            
+        }
+        
+        self.tableView.reloadData()
     }
     
 

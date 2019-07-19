@@ -12,6 +12,7 @@
 		1D1139C722BC4806007E38F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1139C522BC4806007E38F4 /* Main.storyboard */; };
 		1D1139C922BC4808007E38F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D1139C822BC4808007E38F4 /* Assets.xcassets */; };
 		1D1139CC22BC4808007E38F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1139CA22BC4808007E38F4 /* LaunchScreen.storyboard */; };
+		1D90944722DD397900461B1D /* ToDoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90944622DD397900461B1D /* ToDoDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		1D1139C822BC4808007E38F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D1139CB22BC4808007E38F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D1139CD22BC4808007E38F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D90944622DD397900461B1D /* ToDoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				1D1139C122BC4806007E38F4 /* AppDelegate.swift */,
 				1D1139C322BC4806007E38F4 /* TodofieViewController.swift */,
+				1D90944622DD397900461B1D /* ToDoDataModel.swift */,
 				1D1139C522BC4806007E38F4 /* Main.storyboard */,
 				1D1139C822BC4808007E38F4 /* Assets.xcassets */,
 				1D1139CA22BC4808007E38F4 /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D90944722DD397900461B1D /* ToDoDataModel.swift in Sources */,
 				1D1139C422BC4806007E38F4 /* TodofieViewController.swift in Sources */,
 				1D1139C222BC4806007E38F4 /* AppDelegate.swift in Sources */,
 			);
